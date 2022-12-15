@@ -1,0 +1,20 @@
+select 
+
+db.Cd_AR as ARPADRE,
+ar.DBKit,
+ar.DBFantasma,
+DBMateriale.Cd_AR as AR,
+DBMateriale.Consumo,
+l.Prezzo,
+l.Sconto,
+ar.Obsoleto 
+
+from DBMateriale 
+
+left join db on db.Id_DB = DBMateriale.Id_DB
+LEFT JOIN LSScARCFGruppo l on DBMateriale.Cd_AR = l.Cd_AR
+left join ar on DB.Cd_AR = ar.Cd_AR
+where  
+GETDATE() BETWEEN db.InizioValidita and db.FineValidita 
+and ar.Obsoleto = 0 and ar.DBFantasma = 1 and ar.DBKit = 1
+order by ARPADRE
